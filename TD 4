@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov  6 17:30:32 2023
+
+@author: pmola
+"""
+#1.2 example
+
+# Python Example: Creating a Simple Time Series
+dates = ["1st January", "2nd January", "3rd January"]
+stock_prices = [150, 152, 151]
+for date, price in zip(dates, stock_prices):
+    print(f"{date} : ${price}")
+
+#2.1
+#Exercice 1
+
+dates = ["4th January", "5th January", "6th January"]
+stock_prices = [155, 156, 153]
+
+def calculate_average(prices): #definition of a class to calculate the average prices
+    return sum(prices) / len(prices) #sum(prices) is the sum of the numbers in the list prices 
+                                    #len(prices) gives the number of elements in the list prices
+average_price = calculate_average(stock_prices)
+print(f"Average Stock Price: ${average_price}")
+
+#Exercice 2
+
+#Definition of a class to calculate the day with the highest price
+def day_with_highest_price(dates, stock_prices):
+
+    #initialisation of first element of the for loop for the max price 
+    max_price = stock_prices[0]
+    #for loop to find the value in the list when the price is the highest
+    for i in range(1, len(stock_prices)):
+        if stock_prices[i] > max_price:
+            max_price = stock_prices[i]
+            max_price_day = dates[i]
+    return max_price_day
+
+day_with_the_highest_price = day_with_highest_price(dates, stock_prices)
+print(day_with_the_highest_price)
+
+#test the max function
+highest_price_day = max(stock_prices)
+print (highest_price_day)
+
+#Exercice 3
+
+dates_extended = dates + ["7th January", "8th January"]
+stock_prices_extended = stock_prices + [157, 152]
+print(dates_extended, stock_prices_extended)
+
+def analyse_trend_stock_prices (dates_extended, stock_prices_extended):
+    trend = None
+    for i in range(1, len(stock_prices_extended)):
+        if stock_prices_extended[i] > stock_prices_extended[i - 1]:
+            trend = "increasing"
+        elif stock_prices_extended[i] < stock_prices_extended[i - 1]:
+            trend = "decreasing"
+        else : trend = "stable"
+    return(trend)
+
+stock_prices_trend = analyse_trend_stock_prices(dates_extended, stock_prices_extended)
+print(f"Stock Price Trend: {stock_prices_trend}")
+
+#2.2 
+#Exercice 1
+
+dates_2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+stock_prices_2 = [150, 152, 151, 153, 152]
+
+import statistics
+
+def calculate_volatility(stock_prices_2):
+    return statistics.stdev(stock_prices_2)
+
+volatility = calculate_volatility(stock_prices_2)
+print(f"Volatility: ${volatility}")
+
+def calculate_average_2(stock_prices_2,dates_2):
+    average_price_2=sum(stock_prices_2)/len(stock_prices_2)
+    above_average_days = []
+    for i, price_2 in enumerate(stock_prices_2):
+        if price_2 > average_price_2:
+            above_average_days.append(dates_2[i])
+    return average_price_2, above_average_days
+
+average_price_2, above_average_days = calculate_average_2(stock_prices_2, dates_2)
+print("average price:",average_price_2)
+print("Days with Stock Price Above Average:",above_average_days)
+
