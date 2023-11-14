@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov  7 11:06:04 2023
+
+@author: pmola
+"""
+
+"""While Loop - Investment Growth: Let’s consider a different initial
+principal and interest rate: principal = 500 and rate = 0.07
+• Exercise 3 (with solution): Calculate and print the number of
+years required for this investment to reach a value of 1000.
+principal = 500
+rate = 0.07
+years = 0
+while principal < 1000:
+principal *= (1 + rate)
+years += 1
+print(years)
+• Exercise 4 (try on your own): Modify the code to print the
+final value of the investment after those years"""
+
+principal = 500
+rate = 0.07
+years = 0
+while principal < 1000:
+    principal *= (1 + rate)
+    years += 1
+print(years)
+print(principal)
+
+"""If Statement - Bond Investment: Given the decision criterion to
+buy a bond based on its yield, you now encounter a new bond with a
+yield of 3.8.
+• Exercise 1 (with solution): Determine whether to buy this
+bond or not.
+bond_yield = 3.8
+if bond_yield > 4.0:
+print("Buy the bond.")
+else:
+print("Do not buy the bond.")
+• Exercise 2 (try on your own): Modify the decision criteria to
+also consider buying the bond if its yield is exactly 4"""
+
+bond_yield = 3.8
+if bond_yield >= 4.0:
+    print("Buy the bond.")
+else:
+    print("Do not buy the bond.")
+    
+for num in range [18:22]:
+    print(num)
+    
