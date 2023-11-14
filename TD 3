@@ -1,0 +1,168 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 24 17:36:38 2023
+
+@author: pmola
+"""
+import numpy as np
+#Exercice 1
+
+class Stocks:
+    def __init__(self, name, price, dividend):
+        self.name=name
+        self.price=price
+        self.dividend=dividend
+        
+    def __str__(self):
+        return "Stock " + self.name + " is currently priced " + str(self.price)
+    
+    def yield_dividend(self):
+        if self.price==0:
+            return 0
+        else:
+            return (self.dividend/self.price)
+
+Total_Energie_Stock=Stocks("TotalEnergie",62.03,2.81)
+print(Total_Energie_Stock)
+
+
+#Exercice 2
+
+class Portofolio:
+    def __init__(self):
+        self.instruments = []
+        
+    def add_instrument(self, instrument):
+        self.instruments.append(instrument)
+        
+    def total_value(self):
+        total=0
+        for instrument in self.instruments:
+            total += instrument.price
+        return total
+
+class Stock:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+class Bond:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+Portofolio1 = Portofolio()
+
+stock1=Stock("Apple", 172.10)
+stock2=Stock("TotalEnergie",62.03)
+bond1=Bond("OAT",50)
+
+Portofolio1.add_instrument(stock1)
+Portofolio1.add_instrument(stock2)
+Portofolio1.add_instrument(bond1)
+
+Portofolio_value=Portofolio1.total_value()
+print(Portofolio_value)        
+
+
+#Exercice 3 (réponse chat GPT)
+
+class CurrencyConverter:
+    def __init__(self):
+        # Initialize a dictionary to hold conversion rates for currency pairs
+        self.rates = {}
+
+    def add_rate(self, source_currency, target_currency, rate):
+        # Add or update a conversion rate for a currency pair
+        self.rates[(source_currency, target_currency)] = rate
+
+    def convert(self, amount, source_currency, target_currency):
+        # Convert the given amount from source_currency to target_currency
+        if (source_currency, target_currency) in self.rates:
+            conversion_rate = self.rates[(source_currency, target_currency)]
+            converted_amount = amount * conversion_rate
+            return converted_amount
+        else:
+            return None  # Conversion rate not found
+
+# Create a CurrencyConverter instance
+converter = CurrencyConverter()
+
+# Add conversion rates for currency pairs
+converter.add_rate("USD", "EUR", 0.85)
+converter.add_rate("EUR", "JPY", 130.0)
+converter.add_rate("USD", "GBP", 0.75)
+
+# Convert an amount from one currency to another
+amount_to_convert = 100.0
+source_currency = "USD"
+target_currency = "EUR"
+converted_amount = converter.convert(amount_to_convert, source_currency, target_currency)
+
+if converted_amount is not None:
+    print(f"{amount_to_convert} {source_currency} is equivalent to {converted_amount} {target_currency}")
+else:
+    print("Conversion rate not found.")
+    
+
+prices = np.array([100, 102, 104, 101, 99, 98])
+returns = (prices[1:] - prices[:-1]) / prices[:-1]
+print("Daily returns:", returns)
+
+# Calculate annualized volatility
+annual_volatility = np.std(returns) * np.sqrt(252)  # Using '*' for multiplication
+print("Annualized volatility:", annual_volatility)
+
+#Exercice 2 Mathématiques NumPy
+# Given data
+w1 = 0.6
+w2 = 0.4
+σ1 = 0.1
+σ2 = 0.2
+ρ12 = 0.5
+
+# Calculate the portfolio variance
+portfolio_variance = (w1**2 * σ1**2) + (w2**2 * σ2**2) + 2 * w1 * w2 * ρ12 * σ1 * σ2
+
+# Print the calculated portfolio variance
+print("Portfolio Variance:", portfolio_variance)
+
+
+# Given data
+w1 = 0.6
+w2 = 0.4
+σ1 = 0.1
+σ2 = 0.2
+ρ12 = 0.5
+
+# Create NumPy arrays for the weights, standard deviations, and correlation coefficient
+weights = np.array([w1, w2])
+std_deviations = np.array([σ1, σ2])
+
+# Calculate the portfolio variance
+portfolio_variance = np.dot(np.dot(weights, np.cov(std_deviations)), weights)
+
+# Print the calculated portfolio variance
+print("Portfolio Variance:", portfolio_variance)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+stock_prices = [100, 102, 104, 103, 105, 107, 108]
+dates = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+plt.figure(figsize=(10, 6))
+plt.plot(dates, stock_prices)  # Use plt.plot for Matplotlib
+plt.title('Stock Price Over a Week')  # Use straight single quotes
+plt.xlabel('Days')  # Use straight double quotes
+plt.ylabel('Stock Price')  # Use straight double quotes
+plt.grid(True)
+plt.show()
+
+#exercice 2
+
+returns = [0.05, -0.02, 0.03, -0.01, 0.02, 0.03, -0.03, 0.01, 0.04, -0.01]
+sns.histplot(returns, bins=5, kde=True)
+plt.title('Distribution of Stock Returns')
+plt.show()
+
