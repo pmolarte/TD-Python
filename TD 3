@@ -13,17 +13,20 @@ class Stocks:
         self.price=price
         self.dividend=dividend
         
-    def __str__(self):
-        return "Stock " + self.name + " is currently priced " + str(self.price)
-    
     def yield_dividend(self):
         if self.price==0:
             return 0
         else:
             return (self.dividend/self.price)
-
+        
+    def __str__(self):
+        return "Stock " + self.name + " is currently priced at " + str(self.price) + "$" + " and the yield dividend is " + str(self.yield_dividend())
+    
 Total_Energie_Stock=Stocks("TotalEnergie",62.03,2.81)
 print(Total_Energie_Stock)
+Apple_Stocks=Stocks("Apple",191.45,0.24)
+print(Apple_Stocks)
+
 
 
 #Exercice 2
@@ -62,7 +65,7 @@ Portofolio1.add_instrument(stock2)
 Portofolio1.add_instrument(bond1)
 
 Portofolio_value=Portofolio1.total_value()
-print(Portofolio_value)        
+print("The value of the portofolio is " + "$" + str(Portofolio_value))       
 
 
 #Exercice 3 (réponse chat GPT)
@@ -93,17 +96,11 @@ converter.add_rate("USD", "EUR", 0.85)
 converter.add_rate("EUR", "JPY", 130.0)
 converter.add_rate("USD", "GBP", 0.75)
 
-# Convert an amount from one currency to another
-amount_to_convert = 100.0
-source_currency = "USD"
-target_currency = "EUR"
-converted_amount = converter.convert(amount_to_convert, source_currency, target_currency)
+print("100 dollars is equal to "+ str(converter.convert(100, "USD","EUR"))+" euros")
+print("100 euros is equal to "+ str(converter.convert(100,"EUR","JPY"))+ " japanese yen")
 
-if converted_amount is not None:
-    print(f"{amount_to_convert} {source_currency} is equivalent to {converted_amount} {target_currency}")
-else:
-    print("Conversion rate not found.")
-    
+
+"""Mathematical tools with Numpy"""
 
 prices = np.array([100, 102, 104, 101, 99, 98])
 returns = (prices[1:] - prices[:-1]) / prices[:-1]
